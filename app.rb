@@ -27,6 +27,8 @@ post '/crashreport' do
     res = ''
     if OS.mac?
       res = `./minidump_stackwalk_mac #{tmpfile.path}`
+    if Os.windows?
+      res = `./minidump_stackwalk_win32 #{tmpfile.path}`
     elsif OS.linux? and OS.bits == 64
       res = `./minidump_stackwalk_linux64 #{tmpfile.path}`
     end
